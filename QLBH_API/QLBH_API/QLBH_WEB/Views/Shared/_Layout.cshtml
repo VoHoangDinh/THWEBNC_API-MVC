@@ -1,0 +1,89 @@
+﻿@using QLBH_WEB.Models
+<!DOCTYPE html>
+<html>
+<head>
+    <title>@ViewBag.Title - Electronix Store</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/css/style.css")" />
+    @RenderSection("Styles", required: false)
+    <script type="text/javascript" src="@Url.Content("~/Scripts/js/boxOver.js")"></script>
+</head>
+<body>
+    <div id="main_container">
+        <div class="top_bar">
+            <div class="top_search">
+                <div class="search_text"><a href="#">Advanced Search</a></div>
+                <input type="text" class="search_input" name="search" />
+                <input type="image" src="@Url.Content("~/Content/images/search.gif")" />
+            </div>
+        </div>
+        <div id="header">
+            <div id="logo">
+                <a href="@Url.Action("Index", "Home")"><img src="@Url.Content("~/Content/images/logo.png")" alt="logo" border="0" width="237" height="140" /></a>
+            </div>
+            <div class="oferte_content">
+                <div class="top_divider"></div>
+                <div class="oferta">
+                    <div class="oferta_content">
+                        <img src="@Url.Content("~/Content/images/laptop.png")" width="94" height="92" alt="special offer" border="0" class="oferta_img" />
+                        <div class="oferta_details">
+                            <div class="oferta_title">Samsung GX 2004 LM</div>
+                            <div class="oferta_text">Special offer for a powerful laptop. Don't miss this chance!</div>
+                            <a href="#" class="details">details</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="top_divider"></div>
+            </div>
+        </div>
+        <div id="menu_tab">
+            <ul class="menu">
+                <li><a href="@Url.Action("Index", "Home")">Home</a></li>
+                <li class="divider"></li>
+                <li><a href="#" class="nav2">Products</a></li>
+                <li class="divider"></li>
+                <li><a href="#" class="nav3">Specials</a></li>
+                <li class="divider"></li>
+                <li><a href="#" class="nav4">My account</a></li>
+                <li class="divider"></li>
+
+                <li><a href="http://localhost:55555/QuanLySanPham" class="nav4" target="_blank">Quản lý Sản phẩm</a></li>
+
+                <li class="divider"></li>
+                <li><a href="#" class="nav5">Shipping</a></li>
+                <li class="divider"></li>
+                <li><a href="#" class="nav6">Contact Us</a></li>
+            </ul>
+        </div>
+        <div id="main_content">
+            <div class="left_content">
+                <div class="title_box">Categories</div>
+                @{ Html.RenderAction("DanhMucMenu", "Home"); }
+                <div class="banner_adds"> <a href="#"><img src="@Url.Content("~/Content/images/bann2.jpg")" alt="banner" border="0" /></a> </div>
+            </div>
+
+            <div class="center_content">
+                @RenderBody()
+            </div>
+
+            <div class="right_content">
+                @{ Html.RenderAction("ShoppingCartWidget", "Cart"); }
+
+                <div class="banner_adds"> <a href="#"><img src="@Url.Content("~/Content/images/bann1.jpg")" alt="banner" border="0" /></a> </div>
+            </div>
+        </div>
+        <div class="footer">
+            <div class="left_footer"> <img src="@Url.Content("~/Content/images/footer_logo.png")" alt="logo" width="170" height="49" /> </div>
+            <div class="center_footer">
+                Template name. All Rights Reserved 2008<br />
+                <a href="http://csscreme.com"><img src="@Url.Content("~/Content/images/csscreme.jpg")" alt="csscreme" border="0" /></a>
+            </div>
+            <div class="right_footer"> <a href="#">home</a> <a href="#">about</a> <a href="#">contact us</a> </div>
+        </div>
+    </div>
+    @* Tải jQuery và viết script AJAX ở cuối trang *@
+    @Scripts.Render("~/bundles/jquery")
+    @RenderSection("Scripts", required: false)
+</body>
+</html>
+

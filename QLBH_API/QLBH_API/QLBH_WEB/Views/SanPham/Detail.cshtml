@@ -1,0 +1,51 @@
+﻿@model QLBH_WEB.Models.SanPhamViewModel
+@{
+    ViewBag.Title = Model?.TENSANPHAM ?? "Chi tiết sản phẩm";
+}
+
+@section Styles {
+    <link href="@Url.Content("~/Content/css/details.css")" rel="stylesheet" type="text/css" />
+}
+
+@if (Model != null)
+{
+    <div class="prod_box_big">
+        <div class="center_prod_box_big">
+            <div class="product_img_big">
+                <img src="@Url.Content("~/Content/images/" + (Model.HINHANH ?? "no-image.png"))" alt="@Model.TENSANPHAM" border="0" />
+            </div>
+            <div class="details_big_box">
+                <div class="product_title_big">@Model.TENSANPHAM</div>
+
+                <div class="prod_price_big">
+                    <span class="price">@string.Format("{0:N0}", Model.DONGIA) $</span>
+                </div>
+
+                <div class="specifications">
+                    @Html.Raw(Model.MOTA?.Replace("\n", "<br />"))
+                </div>
+
+                @using (Html.BeginForm("AddToCart", "Cart", FormMethod.Post, new { @class = "cart-form" }))
+                {
+                    @Html.AntiForgeryToken() @* <<<< THÊM DÒNG NÀY VÀO ĐÂY *@
+                    @Html.Hidden("id", Model.MASANPHAM)
+
+                    <div class="add-to-cart-controls">
+                        <label for="soLuong">Số lượng:</label>
+                        <input type="number" name="soLuong" id="soLuong" value="1" min="1" class="quantity-input" />
+
+                        <button type="submit" class="addtocart">
+                            <img src="@Url.Content("~/Content/images/cart.gif")" alt="cart icon" />
+                            <span>add to cart</span>
+                        </button>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+}
+else
+{
+    <div class="center_title_bar">Lỗi</div>
+    <p style="padding: 20px;">Không tìm thấy thông tin sản phẩm.</p>
+}

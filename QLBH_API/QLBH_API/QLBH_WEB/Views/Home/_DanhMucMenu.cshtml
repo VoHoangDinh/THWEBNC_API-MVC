@@ -1,0 +1,15 @@
+﻿@model IEnumerable<QLBH_WEB.Models.DanhMucViewModel>
+
+<ul class="left_menu">
+    @if (Model != null)
+    {
+        var isOdd = true;
+        foreach (var item in Model)
+        {
+            <li class="@(isOdd ? "odd" : "even")">
+                @Html.ActionLink(item.TENDANHMUC, "Index", "SanPham", new { maDanhMuc = item.MADANHMUC }, null)
+            </li>
+            isOdd = !isOdd;
+        }
+    }
+</ul>

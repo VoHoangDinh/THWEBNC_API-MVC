@@ -1,0 +1,217 @@
+﻿/* --- PHIÊN BẢN CSS LAYOUT CHUẨN 1280px --- */
+
+body {
+    background-color: #f0f2f5;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 13px;
+    margin: 0;
+    color: #333;
+}
+
+a {
+    text-decoration: none;
+    color: #007bff;
+}
+
+    a:hover {
+        text-decoration: underline;
+    }
+
+#main_container {
+    width: 1280px;
+    margin: 20px auto;
+    background-color: #fff;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    border: 1px solid #ddd;
+}
+
+/* Header & Top Bar */
+.top_bar {
+    background-color: #4a4a4a;
+    padding: 8px 20px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.search_text a {
+    color: #ccc;
+}
+
+input.search_input {
+    padding: 5px;
+    border: 1px solid #666;
+}
+
+#header {
+    height: 173px;
+    background: url(../images/header_bg.jpg) no-repeat;
+    display: flex;
+    align-items: center;
+    /* --- BỔ SUNG 2 DÒNG SAU --- */
+    background-size: cover; /* Tự động co giãn ảnh để lấp đầy toàn bộ khung */
+    background-position: center; /* Giữ cho ảnh được căn giữa khi co giãn */
+}
+
+#logo {
+    padding: 0 20px;
+}
+
+.oferta_title {
+    font-size: 15px;
+    color: #b72c24;
+    font-weight: bold;
+}
+
+.oferta_text {
+    font-size: 12px;
+    color: #FFFFFF;
+}
+
+a.details {
+    display: inline-block;
+    background-color: #f0f0f0;
+    color: #333;
+    padding: 5px 10px;
+    margin-top: 5px;
+    border-radius: 3px;
+}
+
+/* Menu chính */
+#menu_tab {
+    height: 50px;
+    border-bottom: 3px solid #007bff;
+    display: flex;
+}
+
+ul.menu {
+    list-style-type: none;
+    margin: 0;
+    padding: 0 20px;
+    display: flex;
+    align-items: center;
+}
+
+    ul.menu li {
+        line-height: 50px;
+    }
+
+    ul.menu a {
+        padding: 0 15px;
+        color: #555;
+        font-weight: bold;
+    }
+
+        ul.menu a:hover {
+            color: #007bff;
+        }
+
+li.divider {
+    width: 1px;
+    height: 20px;
+    background-color: #ddd;
+    margin: auto 15px;
+}
+
+/* --- BỐ CỤC 3 CỘT ĐÃ ĐƯỢC CẬP NHẬT --- */
+#main_content {
+    display: grid;
+    grid-template-columns: 196px 1fr 196px; /* Cột trái, giữa, phải */
+    gap: 25px;
+    padding: 20px;
+}
+
+.left_content, .right_content, .center_content {
+    min-width: 0; /* Thuộc tính quan trọng để nội dung không làm vỡ grid */
+}
+
+/* Box chung */
+.title_box {
+    background-color: #ec004a;
+    color: white;
+    padding: 10px 15px;
+    font-size: 14px;
+    font-weight: bold;
+    border-radius: 4px 4px 0 0;
+}
+.border_box {
+    border: 1px solid #ddd;
+    border-top: none;
+    padding: 10px;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+/* Menu danh mục bên trái */
+ul.left_menu {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    border: 1px solid #ddd;
+    border-top: none;
+    margin-bottom: 15px;
+}
+
+    ul.left_menu a {
+        display: block;
+        padding: 10px 15px;
+        color: #333;
+    }
+
+    ul.left_menu li.odd {
+        background-color: #fff;
+    }
+
+    ul.left_menu li.even {
+        background-color: #f9f9f9;
+    }
+
+    ul.left_menu a:hover {
+        background-color: #007bff;
+        color: white;
+    }
+
+/* --- CSS CHO GIỎ HÀNG (SHOPPING CART) --- */
+
+.shopping_cart .border_box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    padding: 10px;
+}
+
+.cart_details {
+    text-align: left;
+    font-size: 12px;
+    color: #555;
+    line-height: 1.5;
+}
+
+.border_cart {
+    display: block;
+    border-top: 1px dashed #ccc;
+    margin: 4px 0;
+}
+
+.cart_details .price {
+    font-weight: bold;
+    color: #c0392b;
+}
+
+.cart_icon a img {
+    width: 42px;
+    height: 42px;
+    vertical-align: middle; /* Giúp căn chỉnh ảnh tốt hơn */
+}
+
+/* Footer */
+.footer {
+    clear: both;
+    background-color: #fff;
+    padding: 20px;
+    border-top: 1px solid #ddd;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}

@@ -1,0 +1,101 @@
+﻿@model QLBH_ADMIN.Models.SanPhamViewModel
+
+@{
+    ViewBag.Title = "Tạo mới sản phẩm";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@* 1. GIỮ NGUYÊN PHẦN GỌI CSS NÀY *@
+@section Styles {
+    <link href="@Url.Content("~/Content/css/Create.css")" rel="stylesheet" type="text/css" />
+}
+
+@* 2. SỬ DỤNG CLASS "page-title" *@
+<h2 class="page-title">Tạo mới sản phẩm</h2>
+
+@* 3. SỬ DỤNG CLASS "form-card" *@
+<div class="form-card">
+    @using (Html.BeginForm("Create", "QuanLySanPham", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        @Html.AntiForgeryToken()
+
+        @* Hiển thị lỗi validation (nếu có) *@
+        @Html.ValidationSummary(true, "", new { @class = "text-danger mb-3" })
+
+        @* 4. SỬ DỤNG HỆ THỐNG LƯỚI "row" VÀ "col-md-*" TỪ CSS *@
+        <div class="row">
+
+            <div class="col-md-7">
+
+                <div class="mb-3">
+                    @* Dùng class "form-label" và "fw-semibold" *@
+                    @Html.LabelFor(model => model.TENSANPHAM, htmlAttributes: new { @class = "form-label fw-semibold" })
+                    @* Dùng class "form-control" và "form-control-lg" *@
+                    @Html.EditorFor(model => model.TENSANPHAM, new { htmlAttributes = new { @class = "form-control form-control-lg" } })
+                    @Html.ValidationMessageFor(model => model.TENSANPHAM, "", new { @class = "text-danger" })
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        @Html.LabelFor(model => model.GIA, htmlAttributes: new { @class = "form-label fw-semibold" })
+                        @Html.EditorFor(model => model.GIA, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.GIA, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        @Html.LabelFor(model => model.MADANHMUC, "Danh mục", htmlAttributes: new { @class = "form-label fw-semibold" })
+                        @Html.DropDownList("MADANHMUC", (SelectList)ViewBag.DanhMucList, "--- Chọn danh mục ---", new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.MADANHMUC, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    @Html.LabelFor(model => model.MOTA, htmlAttributes: new { @class = "form-label fw-semibold" })
+                    @Html.TextAreaFor(model => model.MOTA, new { @class = "form-control", rows = 5 })
+                    @Html.ValidationMessageFor(model => model.MOTA, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="col-md-5">
+                <div class="mb-3">
+                    <label class="form-label fw-semibold">Hình ảnh sản phẩm</label>
+                    @* Dùng class "image-upload-box" từ CSS *@
+                    <div class="image-upload-box">
+                        @* Thêm thẻ img để xem trước (ID khớp với CSS) *@
+                        <img id="previewImage" src="#" alt="Xem trước ảnh" style="display:none;" />
+                        <input type="file" name="hinhAnhFile" id="hinhAnhFile" class="form-control" onchange="previewFile()" />
+                    </div>
+                    @Html.ValidationMessageFor(model => model.HINHANH, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+        </div> @* 5. SỬ DỤNG CLASS "action-buttons", "btn-secondary", "btn-success" *@
+        <div class="action-buttons">
+            @Html.ActionLink("Quay lại", "Index", null, new { @class = "btn btn-secondary" })
+            <input type="submit" value="Tạo mới" class="btn btn-success" />
+        </div>
+    }
+</div>
+
+@* 6. THÊM JAVASCRIPT ĐỂ LÀM VIỆC VỚI #previewImage *@
+@section Scripts {
+    <script>
+        // Hàm này đọc file người dùng chọn và hiển thị trong thẻ <img>
+        function previewFile() {
+            var preview = document.getElementById('previewImage');
+            var file = document.getElementById('hinhAnhFile').files[0];
+            var reader = new FileReader();
+
+            reader.onloadend = function () {
+                preview.src = reader.result;
+                preview.style.display = 'block'; // Hiển thị ảnh sau khi chọn
+            }
+
+            if (file) {
+                reader.readAsDataURL(file); // Đọc file
+            } else {
+                preview.src = "";
+                preview.style.display = 'none'; // Ẩn nếu không có file
+            }
+        }
+    </script>
+}

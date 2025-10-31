@@ -1,0 +1,184 @@
+﻿/* --- CSS THỦ CÔNG CHO TRANG CREATE SẢN PHẨM --- */
+
+/* Tiêu đề chính của trang */
+.page-title {
+    color: #198754; /* Màu xanh lá cây cho trang Thêm mới */
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 2rem;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+}
+
+/* Thẻ card bao ngoài form */
+.form-card {
+    max-width: 850px;
+    margin: auto;
+    padding: 2rem;
+    background-color: #ffffff;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+/* --- Hệ thống lưới (Grid System) --- */
+.row {
+    display: flex;
+    flex-wrap: wrap;
+    margin-right: -15px;
+    margin-left: -15px;
+}
+
+.col-md-7, .col-md-5, .col-md-6 {
+    position: relative;
+    width: 100%;
+    padding-right: 15px;
+    padding-left: 15px;
+    box-sizing: border-box;
+}
+
+.col-md-7 {
+    flex: 0 0 58.333333%;
+    max-width: 58.333333%;
+}
+
+.col-md-5 {
+    flex: 0 0 41.666667%;
+    max-width: 41.666667%;
+}
+
+.col-md-6 {
+    flex: 0 0 50%;
+    max-width: 50%;
+}
+
+/* --- Các lớp tiện ích (Utility Classes) --- */
+.text-center {
+    text-align: center !important;
+}
+
+.mb-3 {
+    margin-bottom: 1rem !important;
+}
+
+.fw-semibold {
+    font-weight: 600 !important;
+}
+
+.text-danger {
+    color: #dc3545 !important;
+    font-size: 0.875em;
+}
+
+.d-block {
+    display: block !important;
+}
+
+.text-end {
+    text-align: end !important;
+}
+
+.mt-4 {
+    margin-top: 1.5rem !important;
+}
+
+/* --- Style cho Form --- */
+.form-label {
+    margin-bottom: 0.5rem;
+    display: inline-block;
+}
+
+/* Áp dụng cho cả input, textarea, và select */
+.form-control {
+    display: block;
+    width: 100%;
+    padding: 0.75rem 1rem;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #212529;
+    background-color: #fff;
+    border: 1px solid #ced4da;
+    border-radius: 8px;
+    box-sizing: border-box;
+    transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+}
+
+    .form-control:focus {
+        border-color: #86b7fe;
+        outline: 0;
+        box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
+    }
+
+.form-control-lg {
+    padding: 0.9rem 1.2rem;
+    font-size: 1.1rem;
+}
+
+
+/* Khu vực upload và xem trước ảnh */
+.image-upload-box {
+    border: 2px dashed #198754;
+    border-radius: 10px;
+    padding: 1.5rem;
+    background-color: #f8f9fa;
+    text-align: center;
+}
+
+#previewImage {
+    max-width: 100%;
+    max-height: 180px;
+    object-fit: contain;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+    border: 1px solid #ddd;
+}
+
+/* Nút bấm chung */
+.btn {
+    display: inline-block;
+    font-weight: bold;
+    line-height: 1.5;
+    text-align: center;
+    vertical-align: middle;
+    cursor: pointer;
+    border: 1px solid transparent;
+    padding: 10px 25px;
+    font-size: 1rem;
+    border-radius: 50px;
+    transition: all 0.2s ease;
+}
+
+    .btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+    }
+
+/* Nút màu xanh lá */
+.btn-success {
+    color: #fff;
+    background-color: #198754;
+    border-color: #198754;
+}
+
+    .btn-success:hover {
+        background-color: #157347;
+        border-color: #146c43;
+    }
+
+/* Nút màu xám */
+.btn-secondary {
+    color: #fff;
+    background-color: #6c757d;
+    border-color: #6c757d;
+}
+
+    .btn-secondary:hover {
+        background-color: #5c636a;
+        border-color: #565e64;
+    }
+
+.action-buttons {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 2rem;
+}

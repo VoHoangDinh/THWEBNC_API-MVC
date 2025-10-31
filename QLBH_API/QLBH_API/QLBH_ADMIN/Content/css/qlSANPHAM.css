@@ -1,0 +1,188 @@
+﻿/* --- GIAO DIỆN TRANG QUẢN LÝ SẢN PHẨM PHONG CÁCH MẪU --- */
+
+body {
+    background-color: #e6f7ff; /* Nền xanh nhạt hơn */
+    font-family: Arial, sans-serif;
+    color: #333;
+    margin: 0;
+    padding: 0; /* Bỏ padding ở body, dùng padding trong wrapper */
+}
+
+.product-page-wrapper {
+    width: 95%; /* Giảm chiều rộng để có khoảng trắng 2 bên */
+    max-width: 1000px;
+    margin: 20px auto;
+    box-sizing: border-box;
+    background: white; /* Thêm nền trắng cho wrapper */
+    border: 1px solid #cceeff; /* Viền xanh nhạt quanh toàn bộ nội dung */
+    border-radius: 5px;
+    padding: 0; /* Loại bỏ padding ở wrapper */
+}
+
+/* --- Header & Tiêu đề trang --- */
+.page-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 20px 20px 10px 20px; /* Thêm margin cho header */
+    border-bottom: none; /* Bỏ border dưới header */
+    padding-bottom: 0;
+}
+
+    .page-header h2 {
+        font-size: 24px;
+        color: #333333;
+        font-weight: bold;
+        margin: 0;
+        padding: 0;
+    }
+
+/* --- Nút thêm sản phẩm (Thay đổi style theo mẫu) --- */
+.add-button {
+    background-color: #28a745; /* Màu xanh lá (Giống mẫu) */
+    border: none;
+    color: white;
+    padding: 8px 15px;
+    border-radius: 5px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: 0.2s;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+    .add-button::before {
+        content: '+'; /* Thay thế icon bằng dấu cộng đơn giản */
+        font-size: 16px;
+    }
+
+    .add-button:hover {
+        background-color: #218838;
+        transform: none; /* Bỏ hiệu ứng translateY */
+    }
+
+/* --- Thanh tìm kiếm (Ẩn) --- */
+/* Đã xóa CSS liên quan đến thanh tìm kiếm để khớp với mẫu */
+
+
+/* --- Bảng sản phẩm (Table Card) --- */
+.table-card {
+    background: white;
+    border-radius: 0; /* Bỏ bo góc */
+    overflow-x: auto;
+    box-shadow: none; /* Bỏ shadow */
+    padding: 0 20px 20px 20px; /* Thêm padding dưới cùng */
+}
+
+.product-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+    .product-table thead {
+        background-color: #2173c3; /* Màu xanh dương đậm (Giống mẫu) */
+        color: white;
+        text-transform: uppercase;
+        font-size: 14px;
+    }
+
+    .product-table th {
+        padding: 15px 10px; /* Tăng padding header */
+        border-bottom: none;
+        border-right: 1px solid rgba(255, 255, 255, 0.2); /* Viền trắng ngăn cách cột */
+    }
+
+        .product-table th:last-child {
+            border-right: none;
+        }
+
+    .product-table td {
+        padding: 15px 10px;
+        font-size: 13px;
+        /* Bỏ border dưới ở đây để dùng border ở tbody tr */
+        border-bottom: none;
+        vertical-align: middle;
+    }
+
+    /* Kiểu dáng hàng (row) theo mẫu */
+    .product-table tbody tr {
+        border-bottom: 1px solid #dddddd; /* Viền ngăn cách hàng */
+    }
+
+        .product-table tbody tr:nth-child(odd) {
+            background-color: white; /* Hàng lẻ màu trắng */
+        }
+
+        .product-table tbody tr:nth-child(even) {
+            background-color: #f7fbff; /* Hàng chẵn màu xanh nhạt */
+        }
+
+        .product-table tbody tr:hover {
+            background-color: #eef7ff; /* Màu hover */
+            box-shadow: none;
+        }
+
+.product-image {
+    width: 70px; /* Tăng kích thước ảnh */
+    height: 70px;
+    object-fit: contain;
+    border-radius: 0; /* Bỏ bo góc ảnh */
+}
+
+/* --- Nút hành động (Buttons) --- */
+.actions {
+    display: flex;
+    gap: 8px; /* Tăng khoảng cách nút */
+}
+
+.action-btn {
+    border: none;
+    border-radius: 3px; /* Giảm bo góc */
+    color: #fff !important;
+    padding: 8px 15px; /* Tăng padding nút */
+    font-size: 12px;
+    font-weight: normal;
+    cursor: pointer;
+    transition: 0.2s;
+    text-decoration: none;
+}
+
+/* Màu nút theo mẫu */
+.btn-details {
+    background-color: #6c757d;
+}
+/* Xám đậm */
+.btn-edit {
+    background-color: #17a2b8;
+}
+/* Xanh nước biển/Cyan */
+.btn-delete {
+    background-color: #dc3545;
+}
+/* Đỏ */
+
+.action-btn:hover {
+    opacity: 0.9;
+    transform: none; /* Bỏ hiệu ứng scale */
+}
+
+/* --- Responsive --- */
+@media (max-width: 768px) {
+    .page-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+
+    .product-table th, .product-table td {
+        font-size: 12px;
+    }
+
+    .product-image {
+        width: 45px;
+        height: 45px;
+    }
+}

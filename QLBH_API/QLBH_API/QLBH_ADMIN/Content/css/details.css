@@ -1,0 +1,176 @@
+﻿/* --- CSS CHO TRANG CHI TIẾT SẢN PHẨM --- */
+
+body {
+    background-color: #f4f6f9; /* Nền nhẹ nhàng */
+    font-family: Arial, sans-serif;
+    color: #333;
+}
+
+.product-detail-wrapper {
+    width: 95%;
+    max-width: 1000px;
+    margin: 20px auto;
+}
+
+.detail-page-title {
+    font-size: 26px;
+    color: #333;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+    border-bottom: 3px solid #007bff;
+    text-align: center;
+}
+
+.detail-card {
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    padding: 30px;
+}
+
+/* --- Layout chính: Ảnh và Thông tin --- */
+.detail-content-layout {
+    display: flex;
+    gap: 40px;
+    margin-bottom: 40px;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 30px;
+}
+
+.product-image-box {
+    flex: 0 0 40%; /* Chiếm 40% chiều rộng */
+    max-width: 400px;
+}
+
+/* ****************************************************** */
+/* THAY ĐỔI TẬP TRUNG VÀO ĐÂY: BO GÓC VÀ KÍCH THƯỚC ĐỀU */
+/* ****************************************************** */
+.detail-product-image {
+    width: 100%;
+    height: auto;
+    /* Đảm bảo hình ảnh là hình vuông và bao phủ */
+    aspect-ratio: 1 / 1;
+    object-fit: cover; /* Cắt ảnh để vừa với khung (Nếu muốn ảnh hiển thị đầy đủ, dùng 'contain') */
+    /* Thuộc tính bo góc */
+    border-radius: 12px; /* Bo góc mạnh hơn */
+
+    border: 1px solid #ddd;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+}
+
+.product-specs {
+    flex: 1; /* Chiếm phần còn lại */
+}
+
+.product-name-title {
+    font-size: 32px;
+    font-weight: 700;
+    color: #007bff;
+    margin-top: 0;
+    margin-bottom: 20px;
+}
+
+/* --- Bảng thông tin (dl-horizontal) --- */
+.detail-group .dl-horizontal {
+    margin: 0;
+}
+
+.detail-group dt {
+    width: 120px; /* Độ rộng của label */
+    font-weight: 600;
+    color: #555;
+    padding: 5px 0;
+    clear: both;
+    text-align: left;
+}
+
+.detail-group dd {
+    margin-left: 140px;
+    padding: 5px 0;
+    margin-bottom: 10px;
+    border-bottom: 1px dashed #eee;
+}
+
+.product-price {
+    font-size: 24px;
+    font-weight: bold;
+    color: #dc3545; /* Màu đỏ cho giá */
+}
+
+/* --- Mô tả chi tiết --- */
+.product-description-section {
+    padding-top: 20px;
+}
+
+.section-title {
+    font-size: 20px;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 15px;
+    border-left: 5px solid #007bff;
+    padding-left: 10px;
+}
+
+.description-text {
+    line-height: 1.8;
+    color: #555;
+    font-size: 14px;
+}
+
+/* --- Nút hành động --- */
+.detail-actions {
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 1px solid #f0f0f0;
+    display: flex;
+    gap: 15px;
+}
+
+.detail-action-btn {
+    border: none;
+    border-radius: 8px;
+    color: #fff !important;
+    padding: 10px 20px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.2s;
+    text-decoration: none;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.btn-edit {
+    background-color: #ffc107;
+}
+/* Vàng cho Sửa */
+.btn-back {
+    background-color: #6c757d;
+}
+/* Xám cho Quay lại */
+
+.detail-action-btn:hover {
+    opacity: 0.9;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+}
+
+/* --- Responsive --- */
+@media (max-width: 768px) {
+    .detail-content-layout {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .product-image-box {
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
+
+    .product-name-title {
+        font-size: 24px;
+    }
+
+    .product-price {
+        font-size: 20px;
+    }
+}

@@ -1,0 +1,103 @@
+﻿@model QLBH_ADMIN.Models.SanPhamViewModel
+
+@{
+    ViewBag.Title = "Chỉnh sửa sản phẩm";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@* 1. GỌI FILE CSS TƯƠNG ỨNG *@
+@section Styles {
+    <link href="@Url.Content("~/Content/css/EditSanPham.css")" rel="stylesheet" type="text/css" />
+}
+
+@* 2. SỬ DỤNG CLASS "page-title" TỪ CSS *@
+<h2 class="page-title">Chỉnh sửa sản phẩm</h2>
+
+@* 3. SỬ DỤNG CLASS "form-card" TỪ CSS *@
+<div class="form-card">
+    @using (Html.BeginForm("Edit", "QuanLySanPham", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        @Html.AntiForgeryToken()
+
+        @* BẮT BUỘC: Phải có 2 trường ẩn này để biết sửa SP nào và giữ ảnh cũ (nếu không đổi) *@
+        @Html.HiddenFor(model => model.MASANPHAM)
+        @Html.HiddenFor(model => model.HINHANH)
+
+        @Html.ValidationSummary(true, "", new { @class = "text-danger mb-3" })
+
+        @* 4. SỬ DỤNG HỆ THỐNG LƯỚI "row" VÀ "col-md-*" TỪ CSS *@
+        <div class="row">
+
+            <div class="col-md-7">
+
+                <div class="mb-3">
+                    @Html.LabelFor(model => model.TENSANPHAM, htmlAttributes: new { @class = "form-label fw-semibold" })
+                    @Html.EditorFor(model => model.TENSANPHAM, new { htmlAttributes = new { @class = "form-control form-control-lg" } })
+                    @Html.ValidationMessageFor(model => model.TENSANPHAM, "", new { @class = "text-danger" })
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        @Html.LabelFor(model => model.GIA, htmlAttributes: new { @class = "form-label fw-semibold" })
+                        @Html.EditorFor(model => model.GIA, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.GIA, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        @Html.LabelFor(model => model.MADANHMUC, "Danh mục", htmlAttributes: new { @class = "form-label fw-semibold" })
+                        @Html.DropDownList("MADANHMUC", (SelectList)ViewBag.DanhMucList, "--- Chọn danh mục ---", new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.MADANHMUC, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    @Html.LabelFor(model => model.MOTA, htmlAttributes: new { @class = "form-label fw-semibold" })
+                    @Html.TextAreaFor(model => model.MOTA, new { @class = "form-control", rows = 5 })
+                    @Html.ValidationMessageFor(model => model.MOTA, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="col-md-5">
+                <div class="mb-3">
+                    <label class="form-label fw-semibold">Hình ảnh sản phẩm</label>
+                    @* Dùng class "image-preview-box" từ CSS *@
+                    <div class="image-preview-box">
+                        @* Hiển thị ảnh hiện tại (dùng ID #previewImage để JS cập nhật) *@
+                        <img id="previewImage"
+                             src="@Url.Content("~/Content/images/" + (Model.HINHANH ?? "no-image.png"))"
+                             alt="Ảnh sản phẩm" />
+                    </div>
+
+                    <label class="form-label fw-semibold mt-3">Chọn ảnh mới (nếu muốn đổi)</label>
+                    <input type="file" name="hinhAnhFile" id="hinhAnhFile" class="form-control" onchange="previewFile()" />
+                </div>
+            </div>
+
+        </div> @* 5. SỬ DỤNG CLASS "action-buttons", "btn-secondary", "btn-primary" TỪ CSS *@
+        <div class="action-buttons">
+            @Html.ActionLink("Quay lại", "Index", null, new { @class = "btn btn-secondary" })
+            <input type="submit" value="Lưu thay đổi" class="btn btn-primary" />
+        </div>
+    }
+</div>
+
+@* 6. THÊM JAVASCRIPT ĐỂ XEM TRƯỚC ẢNH *@
+@section Scripts {
+    <script>
+        function previewFile() {
+            var preview = document.getElementById('previewImage');
+            var file = document.getElementById('hinhAnhFile').files[0];
+            var reader = new FileReader();
+
+            reader.onloadend = function () {
+                preview.src = reader.result;
+            }
+
+            if (file) {
+                reader.readAsDataURL(file);
+            } else {
+                // Nếu người dùng không chọn file mới, giữ nguyên ảnh cũ (lấy từ model)
+                preview.src = "@Url.Content("~/Content/images/" + (Model.HINHANH ?? "no-image.png"))";
+            }
+        }
+    </script>
+}

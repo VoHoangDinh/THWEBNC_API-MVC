@@ -1,0 +1,34 @@
+﻿@*@model QLBH_WEB.Models.Cart
+
+    <div class="shopping_cart">
+        <div class="title_box">Shopping cart</div>
+        <div class="border_box">
+            <div class="cart_details">
+                @Model.GetTotalQuantity() items <br />
+                <span class="border_cart"></span>
+                Total: <span class="price">@string.Format("{0:N0}", Model.GetTotal())$</span>
+            </div>
+            <div class="cart_icon">
+                <a href="@Url.Action("Index", "Cart")" title="Xem giỏ hàng">
+                    <img src="@Url.Content("~/Content/images/shoppingcart.png")" alt="cart" border="0" />
+                </a>
+            </div>
+        </div>
+    </div>*@
+@model QLBH_WEB.Models.Cart
+
+<div class="shopping_cart">
+    <div class="title_box">Shopping cart</div>
+    <div class="border_box">
+        <div class="cart_details">
+            @Model.GetTotalQuantity() items <br />
+            <span class="border_cart"></span>
+            Total: <span class="price">@string.Format("{0:N0}", Model.GetTotal())$</span>
+        </div>
+        <div class="cart_icon">
+            <a href="@Url.Action("Index", "Cart")" title="Xem giỏ hàng">
+                <img src="@Url.Content("~/Content/images/shoppingcart.png")" alt="cart" border="0" />
+            </a>
+        </div>
+    </div>
+</div>

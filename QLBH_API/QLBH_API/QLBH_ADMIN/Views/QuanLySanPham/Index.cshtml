@@ -1,0 +1,70 @@
+﻿@model IEnumerable<QLBH_ADMIN.Models.SanPhamViewModel>
+
+@{
+    ViewBag.Title = "Quản lý sản phẩm";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@* Lưu ý: Bạn cần sao chép file qlSANPHAM.css từ dự án QLBH_WEB
+    sang dự án QLBH_ADMIN (QLBH_ADMIN/Content/css/qlSANPHAM.css)
+*@
+@section Styles {
+    <link href="@Url.Content("~/Content/css/qlSANPHAM.css")" rel="stylesheet" type="text/css" />
+}
+
+<div class="product-page-wrapper">
+    <div class="page-header">
+        <h2>Danh Sách Sản Phẩm</h2>
+        @Html.ActionLink("Thêm Mới", "Create", null, new { @class = "add-button" })
+    </div>
+
+    @if (TempData["SuccessMessage"] != null)
+    {
+        <div class="alert alert-success">@TempData["SuccessMessage"]</div>
+    }
+    @if (TempData["ErrorMessage"] != null)
+    {
+        <div class="alert alert-danger">@TempData["ErrorMessage"]</div>
+    }
+
+    <div class="table-card">
+        <table id="productTable" class="product-table">
+            <thead>
+                <tr>
+                    <th style="width: 50%;">TÊN SẢN PHẨM</th>
+                    <th style="width: 20%; text-align: center;">HÌNH ẢNH</th>
+                    <th style="width: 30%; text-align: center;">THAO TÁC</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td class="product-name">@item.TENSANPHAM</td>
+                        <td style="text-align: center;">
+                            <img src="@Url.Content("~/Content/images/" + (item.HINHANH ?? "no-image.png"))"
+                                 alt="@item.TENSANPHAM"
+                                 class="product-image" />
+                        </td>
+                        <td class="actions" style="justify-content: center;">
+                            @Html.ActionLink("Chi tiết", "Details", new { id = item.MASANPHAM }, new { @class = "action-btn btn-details" })
+                            @Html.ActionLink("Sửa", "Edit", new { id = item.MASANPHAM }, new { @class = "action-btn btn-edit" })
+
+                            @using (Html.BeginForm("Delete", "QuanLySanPham", new { id = item.MASANPHAM }, FormMethod.Post, new { onsubmit = "return confirm('Bạn có chắc muốn xóa sản phẩm này không?');", @class = "delete-form" }))
+                            {
+                                @Html.AntiForgeryToken()
+                                <button type="submit" class="action-btn btn-delete">Xóa</button>
+                            }
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        // Có thể thêm script nếu cần
+    </script>
+}

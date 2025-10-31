@@ -1,0 +1,42 @@
+﻿@model IEnumerable<QLBH_WEB.Models.SanPhamViewModel>
+@{
+    ViewBag.Title = "Sản phẩm";
+}
+
+@* Sửa lại đường dẫn và tên file CSS cho đúng *@
+@section Styles {
+    <link href="@Url.Content("~/Content/css/dsSANPHAM.css")" rel="stylesheet" type="text/css" />
+}
+
+<div class="center_title_bar">Latest Products</div>
+
+@if (!Model.Any())
+{
+    <p style="padding: 20px;">Không có sản phẩm nào trong danh mục này.</p>
+}
+else
+{
+    @* --- THÊM THẺ DIV BAO BỌC Ở ĐÂY --- *@
+    <div class="prod_box_wrapper">
+        @foreach (var item in Model)
+        {
+            <div class="prod_box">
+                <div class="product_title">
+                    @Html.ActionLink(item.TENSANPHAM, null, null, new { id = item.MASANPHAM }, null)
+                </div>
+                <div class="product_img">
+                    <a href="@Url.Action(null, null, new { id = item.MASANPHAM })">
+                        <img src="@Url.Content("~/Content/images/" + (item.HINHANH ?? "no-image.png"))" alt="@item.TENSANPHAM" border="0" />
+                    </a>
+                </div>
+                <div class="prod_price">
+                    <span class="price">@string.Format("{0:N0}", item.DONGIA) $</span>
+                </div>
+                <div>
+                    @Html.ActionLink("details", "Detail", "SanPham", new { id = item.MASANPHAM }, new { @class = "prod_details" })
+                </div>
+            </div>
+        }
+    </div>
+    @* --- KẾT THÚC THẺ DIV BAO BỌC --- *@
+}

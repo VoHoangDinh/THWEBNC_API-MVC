@@ -1,0 +1,59 @@
+﻿@model QLBH_ADMIN.Models.SanPhamViewModel
+
+@{
+    ViewBag.Title = "Chi tiết sản phẩm";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@* 1. GỌI FILE CSS TƯƠNG ỨNG *@
+@section Styles {
+    <link href="@Url.Content("~/Content/css/details.css")" rel="stylesheet" type="text/css" />
+}
+
+@* 2. SỬ DỤNG CÁC CLASS BAO BỌC TỪ CSS *@
+<div class="product-detail-wrapper">
+    <h2 class="detail-page-title">Chi tiết sản phẩm</h2>
+
+    <div class="detail-card">
+
+        @* 3. SỬ DỤNG BỐ CỤC 2 CỘT TỪ CSS *@
+        <div class="detail-content-layout">
+
+            <div class="product-image-box">
+                <img src="@Url.Content("~/Content/images/" + (Model.HINHANH ?? "no-image.png"))"
+                     alt="@Model.TENSANPHAM"
+                     class="product-main-image" />
+            </div>
+
+            <div class="product-info-box">
+                <h3 class="product-info-title">@Html.DisplayFor(model => model.TENSANPHAM)</h3>
+
+                <div class="product-info-category">
+                    @* Tên danh mục sẽ hiển thị nếu bạn có truyền nó vào Model,
+                        nếu không, bạn có thể hiển thị ID như bên dưới *@
+                    <strong>Danh mục:</strong> @Html.DisplayFor(model => model.MADANHMUC)
+                </div>
+
+                <div class="product-info-price">
+                    @* Định dạng giá cho đẹp (VD: 1,200,000 đ) *@
+                    @(Model.GIA.HasValue ? Model.GIA.Value.ToString("N0") + " đ" : "Chưa có giá")
+                </div>
+            </div>
+
+        </div> @* 4. PHẦN MÔ TẢ BÊN DƯỚI *@
+        <div class="product-description-section">
+            <h4 class="section-title">Mô tả chi tiết</h4>
+            <div class="description-text">
+                @* Dùng Raw để hiển thị HTML nếu có, nếu không thì dùng DisplayFor *@
+                @Html.Raw(Model.MOTA != null ? Model.MOTA.Replace("\n", "<br />") : "Không có mô tả.")
+            </div>
+        </div>
+
+        @* 5. KHU VỰC NÚT BẤM (HÀNH ĐỘNG) *@
+        <div class="detail-actions">
+            @Html.ActionLink("Chỉnh sửa", "Edit", new { id = Model.MASANPHAM }, new { @class = "detail-action-btn btn-edit" })
+            @Html.ActionLink("Quay lại danh sách", "Index", null, new { @class = "detail-action-btn btn-back" })
+        </div>
+
+    </div>
+</div> ```
